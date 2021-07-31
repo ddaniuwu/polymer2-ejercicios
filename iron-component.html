@@ -1,0 +1,54 @@
+<link rel="import" href="./node_modules/@polymer/iron-ajax/iron-ajax.js">
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+<link rel="import" href="./node_modules/@polymer/paper-spinner/paper-spinner.js">
+
+<link rel="import" href="./node_modules/@polymer/paper-button/paper-button.js">
+
+<dom-module id="my-component">
+    <template>
+        <iron-ajax 
+            url="http://jsonplaceholder.typicode.com/users"
+            auto
+            handle-as="json"
+            last-response="{{data}}"
+        >
+        </iron-ajax>
+        <paper-spinner active></paper-spinner>
+        <paper-button class="pink">link</paper-button>
+      <h1>  [[data.name]]</h1>
+
+      <h3>[[acount]]</h3>
+    </template>
+
+    <script>
+
+        class ComponentIron extends Polymer.Element{
+            static get is(){
+                return 'my-component'
+            }
+            static get properties(){
+                return{
+                    acount:{
+                        type:String,
+                        value:'',
+                        observer: '_comprobarUsuario'
+                    },
+                    user: {
+                        type:Boolean,
+                        value:false
+                    }
+                }
+            }
+
+            _comprobarUsuario(user){
+                if(this.user == true){
+                    this.acount = 'Luis'
+                }else{
+                    this.acount = 'Juan'
+                }
+            }         
+        }
+        window.customElements.define(ComponentIron.is , ComponentIron)
+
+    </script>
+</dom-module>

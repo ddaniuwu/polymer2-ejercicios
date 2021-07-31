@@ -1,0 +1,50 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="./node_modules/@polymer/paper-spinner/paper-spinner.js">
+
+
+<dom-module id="ironajaxcomponents-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+            <paper-spinner active></paper-spinner>
+
+            <template is="dom-if" if={{title}}>
+              Title is <b>Titulo 1</b>
+            </template>
+            <template is="dom-if" if={{!title}}>
+              Title is <b>Titulo 2</b>
+            </template>
+  </template>
+
+  <script>
+    /**
+     * `ironajaxcomponents-element`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class IronajaxcomponentsElement extends Polymer.Element {
+      static get is() { return 'ironajaxcomponents-element'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'ironajaxcomponents-element'
+          },
+          title:{
+            type:Boolean , 
+            value:false
+          }
+        };
+      }
+    }
+
+    window.customElements.define(IronajaxcomponentsElement.is, IronajaxcomponentsElement);
+  </script>
+</dom-module>
