@@ -1,0 +1,81 @@
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+
+
+
+<dom-module id="claves-iguales">
+    <template>
+        <div>
+            <input type="label" value="{{clave.value}}"></input>
+            <span>[[errorClave]]</span>
+        </div>
+        <div>
+            <input type="label" value="{{clave.repeticion}}"></input>
+            <span>[[errorRepeticion]]</span>
+        </div>
+            <button on-click="reset">Reset</button>
+
+    </template>
+
+    <script>
+        class Claves extends Polymer.Element{
+            static get is(){
+                return 'claves-iguales'
+            }
+            static get properties(){
+                return{
+                    errorClave:String,
+                    errorRepeticion:String,
+                    clave: {
+                        type:Object,
+                        value:function(){
+                            return {
+                                value:'',
+                                repeticion: ''
+                            }
+                        }
+                    }
+                }
+            }
+            /**
+              * Array of strings describing multi-property observer methods and their
+              * dependant properties
+              */
+            static get observers() {
+                return [
+                    'comprobarClave(clave.value)',
+                    'comprobarIguales(clave.value, clave.repeticion)'
+                ];
+            }
+            constructor(){
+                super();
+            }
+            comprobarClave(cadena){
+                if(cadena== ''){
+                    this.errorClave = '*Campo requerido'
+                }else{
+                    this.errorClave = '';
+                }
+            }
+
+            comprobarIguales(value , repeticion){
+                console.log('comprobarIguales' , value , repeticion);
+                if (value!= repeticion){
+                    this.errorRepeticion = '*las claves no son iguales'
+                }else{
+                    this.errorRepeticion = ''
+                }
+            }
+
+            reset(){
+                this.set('clave.value','');
+                this.set('clave.repeticion','');
+            }
+
+
+        }
+        window.customElements.define(Claves.is, Claves)
+
+    
+    </script>
+
+</dom-module>
