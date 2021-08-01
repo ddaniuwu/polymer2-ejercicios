@@ -1,0 +1,54 @@
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+
+<dom-module id="computed-properties">
+    <template>
+        [[nombrecompleto]]
+        <button on-click="cambiarNombreCompleto">Cambiar</button>
+    </template>
+
+    <script>
+        class ComputedProperties extends Polymer.Element{
+
+            static get is(){
+                return 'computed-properties'
+            }
+            
+            static get properties(){
+                return{
+                    nombre :{
+                        type: String,
+                        value:'Luis'
+                    }, 
+                    apellidos:{
+                        type:String,
+                        value:'Hernandez'
+                    } ,
+                    nombrecompleto: 
+                    {
+                     type:String,
+                    computed:'definirNombreCompleto(nombre ,apellidos)'
+                    }
+                }
+               
+            }
+
+            constructor(){
+                super();
+            }         
+
+            definirNombreCompleto(nombre , apellidos){
+                //this.nombre = 'Jose'
+                //this.apellidos = 'Perez'
+                return nombre + '' +apellidos;
+            }
+
+
+            cambiarNombreCompleto(nombre , apellidos){
+                this.nombre = 'Jose'
+                this.apellidos = 'Perez'
+                return nombre + '' +apellidos;
+            }
+        }
+        customElements.define(ComputedProperties.is , ComputedProperties)
+    </script>
+</dom-module>

@@ -1,0 +1,43 @@
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+
+<dom-module id="sub-props">
+    <template>
+        <p> [[objeto.edad.value]]</p>
+        <button on-click="change">Cambiar</button>
+    </template>
+
+    <script>
+        /**
+          * Declared properties and their corresponding attributes
+          */
+    class SubProps extends Polymer.Element{
+        static get is(){
+            return 'sub-props'
+        }
+
+        static get properties() {
+            return {
+                edad:Number,
+                objeto:{
+                    type:Object,
+                    value: function(){
+                        return{
+                            edad:{
+                                type:Number,
+                                value:0
+                            }
+                        }
+                    }
+                }       
+            };
+        }
+
+        change(){
+            //this.objeto.edad.value = 20
+            this.set('objeto.edad.value',20)
+        }
+    }
+    customElements.define(SubProps.is , SubProps)
+        
+    </script>
+</dom-module>
