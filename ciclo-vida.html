@@ -1,0 +1,48 @@
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+
+<dom-module id="ciclo-vida">
+    <template>
+        <div>Este es un elemento "ciclo-vida"</div>
+    </template>
+
+    <script>
+        class CicloVida extends Polymer.Element{
+            static get is(){
+                return 'ciclo-vida'
+            }
+
+            static get properties(){
+                return{
+                    test: String
+                }
+            }
+
+            constructor(){
+                super()
+                console.log('Ejecutandose el constructor')
+            }
+
+            connectedCallback(){
+                super.connectedCallback()
+                console.log('Ejecutandose connectedCallback')
+            }
+            
+            disconnectedCallback() {
+                super.disconnectedCallback();
+                console.log('Ejecutandose disconnectedCallback')
+            }
+
+            attributeChangedCallback(nombre, valorAnterior, valorNuevo) {
+                super.attributeChangedCallback()
+                console.log('ejecutandose attribute changedcallback')
+            
+            }
+            ready() {
+                super.ready();
+                console.log('Ejecutandose ready')
+            }   
+
+        }
+        window.customElements.define(CicloVida.is , CicloVida)
+    </script>
+</dom-module>

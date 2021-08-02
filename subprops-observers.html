@@ -1,0 +1,41 @@
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+
+<dom-module id="my-custom">
+    <template>
+        <input value="{{user.name::input}}"><br>
+        [[user.name]]
+    </template>
+    <script>
+        class XCustom extends Polymer.Element{
+            static get is(){
+                return 'my-custom'
+            }
+            static get properties(){
+                return{
+                    user:{
+                        type:Object,
+                        value: function(){
+                            return{}
+                        }
+                    }
+                }
+            }
+        
+            static get observers(){
+                return [
+                    'userNameChanged(user.name)'
+                ]
+        }
+            userNameChanged(name){
+                if(name){
+                    
+                    console.log('new name:'+name)
+                }else{
+                    console.log('User name is undefined')
+                }
+            }
+        }
+        customElements.define(XCustom.is, XCustom)
+        
+    </script>
+</dom-module>
