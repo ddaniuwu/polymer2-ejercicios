@@ -1,0 +1,40 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<!--Ejemplo con el comodin 
+Observadores relacionados a un path 
+-->
+
+<dom-module id="mi-comodin">
+    <template>
+        <input value="{{user.name.first::input}}" placeholder="First Name">
+        <input value="{{user.name.last::input}}" placeholder="Last Name">
+    </template>
+    <script>
+        class Comodin extends Polymer.Element{
+            static get is(){
+                return 'mi-comodin'
+            }
+            static get properties(){
+                return{
+                    user:{
+                        type:Object,
+                        value: function(){
+                            return{'name':{}}
+                        }
+                    }
+                }
+            }
+            static get observers(){
+                return[
+                    'userNameChanged(user.name.*)'
+                ]
+            }
+            userNameChanged(changeRecord){
+                console.log('path', changeRecord.path)
+                console.log('value' , changeRecord.value)
+            }
+
+        }
+        customElements.define(Comodin.is, Comodin)
+
+    </script>
+</dom-module>
