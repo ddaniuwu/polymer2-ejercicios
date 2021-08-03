@@ -1,0 +1,46 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+
+<dom-module id="observers-2">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+        <input value="{{nombre::input}}">
+        <h2>Observers [[nombre]]</h2>
+
+        <p> Valor nuevo
+            <div id='new'></div>
+        </p>
+
+        <p>Valor anterior
+            <div id='old'></div>
+        </p>
+    </template>
+
+    <script>
+    
+        class Observers2 extends Polymer.Element {
+            static get is() {
+                return 'observers-2';
+            }
+            static get properties() {
+                return {
+                    nombre:{
+                    type:String,
+                    value:'',
+                    observer: 'changeNombre'
+                }
+                };
+            }
+            changeNombre(newValue , oldValue){
+                this.$.new.innerHTML = newValue
+                this.$.new.innerHTML = oldValue
+            }
+
+        }
+
+       customElements.define(Observers2.is, Observers2);
+    </script>
+</dom-module>

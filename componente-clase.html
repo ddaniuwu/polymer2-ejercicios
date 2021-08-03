@@ -1,0 +1,109 @@
+<link rel="import" href="./bower_components/polymer/polymer-element.html">
+
+<dom-module id="componente-clase">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+            .activo{
+                font-style: italic;
+                color: rebeccapurple;
+            }
+            .desactivo{
+                color: silver;
+            }
+        </style>
+
+        <div>
+            <b on-click="Opcion1" id="opcion1" class$="[[opcion1]]">Opcion1</b>
+            <b on-click="Opcion2" id="opcion2" class$="[[opcion2]]">Opcion2</b>
+            <b on-click="Opcion3" id="opcion3" class$="[[opcion3]]">Opcion3</b>
+
+        </div>
+
+    </template>
+
+    <script>
+        /**
+         * `LowerCaseDashedName` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class PascalCaseName extends Polymer.Element {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'componente-clase';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                valoracion:{
+                    type:String,
+                    observer: 'valoracionObserver'
+                },
+                opcion1:{
+                    type:String,
+                    value:'desmarcado'
+                },
+                opcion2:{
+                    type:String,
+                    value:'desmarcado'
+                },
+                opcion3:{
+                    type:String,
+                    value:'desmarcado'
+                }
+
+                };
+            }
+
+            /**
+             * Instance of the element is created/upgraded. Use: initializing state,
+             * set up event listeners, create shadow dom.
+             * @constructor
+             */
+            constructor() {
+                super();
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function() {
+                    
+                });
+            }
+
+            Opcion1(){
+                this.valoracion = 'opcion1'
+            }
+            Opcion2(){
+                this.valoracion = 'opcion2'
+            }
+            Opcion3(){
+                this.valoracion = 'opcion3'
+            }
+
+            valoracionObserver(valoracion){
+                this.opcion1 = (valoracion == 'opcion1') ? 'marcado' : 'desmarcado'
+                this.Opcion2 = (valoracion == 'opcion2') ? 'marcado' : 'desmarcado'
+                this.opcion3 = (valoracion == 'opcion3') ? 'marcado' : 'desmarcado'
+            }
+
+        }
+
+        window.customElements.define(PascalCaseName.is, PascalCaseName);
+    </script>
+</dom-module>

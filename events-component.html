@@ -2,12 +2,29 @@
 
 <dom-module id="componente-eventos">
     <template>
-
-
+        <button on-click="handleClick">Kick me</button>
     </template>
 
     <script>
+        class Eventos extends Polymer.Element{
+            static get is(){
+                return 'componente-eventos'
+            }
 
-
+            handleClick(e){
+                this.dispatchEvent(new CustomEvent('kick', {
+                    detail: {
+                        kicked:true
+                    }
+                }));
+            }
+        }
+        customElements.define(Eventos.is , Eventos)
     </script>
 </dom-module>
+
+    <script>
+        document.querySelector('componente-eventos').addEventListener('kick',function(e){
+            console.log(e.detail.kicked)
+        })
+    </script>

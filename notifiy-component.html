@@ -3,7 +3,6 @@
 <dom-module id="dw-valorar">
     <template>
         <style>
-
 :host {
         display: block
       }
@@ -35,7 +34,6 @@
       static get is() {
         return 'dw-valorar';
       }
-
       static get properties() {
         return {
           valoracion: {
@@ -61,7 +59,6 @@
       constructor() {
         super();
       }
-
       valoracionObserver(valoracion) {
         console.log('valoracionObserver', valoracion);
         this.buenoClass = (valoracion == 'bueno')? 'marcado' : 'desmarcado';
