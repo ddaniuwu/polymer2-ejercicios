@@ -2,7 +2,7 @@
 
 <dom-module id="componente-eventos">
     <template>
-        <button on-click="handleClick">Kick me</button>
+        <button on-click="handleClick">Kick</button>
     </template>
 
     <script>
@@ -10,7 +10,6 @@
             static get is(){
                 return 'componente-eventos'
             }
-
             handleClick(e){
                 this.dispatchEvent(new CustomEvent('kick', {
                     detail: {
